@@ -2,6 +2,9 @@ import type { NextRequest } from "next/server";
 import { withLimit } from "@/lib/ratelimit";
 import { getStringContextLength } from "./lib";
 
+export const config = { runtime: "edge" };
+
+
 export async function POST(request: NextRequest) {
   try {
     return await withLimit(request, "1 per 3 seconds", async (user, limit) => {

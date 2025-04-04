@@ -24,8 +24,8 @@ importers:
         specifier: ^19.0.0
         version: 19.1.0(react@19.1.0)
       tiktoken:
-        specifier: ^1.0.20
-        version: 1.0.20
+        specifier: ^1.0.15
+        version: 1.0.15
     devDependencies:
       '@eslint/eslintrc':
         specifier: ^3
@@ -1837,8 +1837,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  tiktoken@1.0.20:
-    resolution: {integrity: sha512-zVIpXp84kth/Ni2me1uYlJgl2RZ2EjxwDaWLeDY/s6fZiyO9n1QoTOM5P7ZSYfToPvAvwYNMbg5LETVYVKyzfQ==}
+  tiktoken@1.0.15:
+    resolution: {integrity: sha512-sCsrq/vMWUSEW29CJLNmPvWxlVp7yh2tlkAjpJltIKqp5CKf98ZNpdeHRmAlPVFlGEbswDc6SmI8vz64W/qErw==}
 
   tinyglobby@0.2.12:
     resolution: {integrity: sha512-qkf4trmKSIiMTs/E63cxH+ojC2unam7rJ0WrauAzpT3ECNTxGRMlaXxVbfxMUC/w0LaYk6jQ4y/nGR9uBO3tww==}
@@ -3920,7 +3920,7 @@ snapshots:
       commander: 2.20.3
       source-map-support: 0.5.21
 
-  tiktoken@1.0.20: {}
+  tiktoken@1.0.15: {}
 
   tinyglobby@0.2.12:
     dependencies:
