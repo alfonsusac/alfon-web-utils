@@ -5,6 +5,26 @@ import { getStringContextLength } from "./lib";
 export const config = { runtime: "edge" };
 
 
+export async function GET(request: NextRequest) {
+  try {
+    return await withLimit(request, "1 per 3 seconds", async (user, limit) => {
+      // CACHE THIS
+      const length = await getStringContextLength(
+        // content
+      )
+
+      return Response.json({
+        data: {
+          length,
+        },
+        limit
+      })
+    })
+  } catch {
+    return new Response("Internal Server Error", { status: 500 })
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     return await withLimit(request, "1 per 3 seconds", async (user, limit) => {
