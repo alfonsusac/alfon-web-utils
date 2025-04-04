@@ -1,7 +1,6 @@
 import type { NextRequest } from "next/server";
 import { withLimit } from "@/lib/ratelimit";
 import { getStringContextLength } from "./lib";
-import { error } from "console";
 
 export const config = { runtime: "edge" };
 
