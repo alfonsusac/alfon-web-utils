@@ -23,7 +23,9 @@ export async function POST(request: NextRequest) {
       } = body as { model?: string, content: string };
 
       // CACHE THIS
-      const length = await getStringContextLength(content)
+      const length = await getStringContextLength(
+        // content
+      )
 
       const charLength = content.length
 

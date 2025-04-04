@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "copy-webpack-plugin": "^13.0.0",
     "next": "15.2.4",
     "parse-duration": "^2.1.4",
     "react": "^19.0.0",
