@@ -21,12 +21,12 @@ export async function GET(request: NextRequest) {
         })
       } catch (error) {
         console.log(error)
-        return new Response("Internal Server Error", { status: 500 })
+        return new Response(`Failed getting context string legnth (${error instanceof Error ? error.message : JSON.stringify(error)})`, { status: 500 })
       }
 
     })
   } catch {
-    return new Response("Internal Server Error", { status: 500 })
+    return new Response("Internal Server Error (route.ts)", { status: 500 })
   }
 }
 
