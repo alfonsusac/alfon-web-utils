@@ -8,7 +8,7 @@ export function GET(request: Request) {
         limit,
       })
     })
-  } catch (error) {
+  } catch {
     return new Response("Internal Server Error", { status: 500 })
   }
 }
