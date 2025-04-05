@@ -3,11 +3,11 @@ import { NextApiRequest, NextApiResponse } from "next";
 import JSONmodelToEncoding from 'tiktoken/model_to_encoding.json'
 import JSONregistry from 'tiktoken/registry.json'
 import { rateLimiter } from "@/lib/ratelimit";
-import { getUser } from "@/lib/user";
+import { getUserPagesDir } from "@/lib/user";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
-  const user = await getUser()
+  const user = getUserPagesDir(req)
   const rl = rateLimiter(user.ip, `60 per 1 minutes`)
   if (!rl.allowed) {
     return res.status(429).json({
