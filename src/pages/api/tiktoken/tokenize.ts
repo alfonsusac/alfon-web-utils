@@ -2,8 +2,21 @@ import { get_encoding, encoding_for_model } from "tiktoken";
 import { NextApiRequest, NextApiResponse } from "next";
 import JSONmodelToEncoding from 'tiktoken/model_to_encoding.json'
 import JSONregistry from 'tiktoken/registry.json'
+import { rateLimiter } from "@/lib/ratelimit";
+import { getUser } from "@/lib/user";
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+
+  const user = await getUser()
+  const rl = rateLimiter(user.ip, `60 per 1 minutes`)
+  if (!rl.allowed) {
+    return res.status(429).json({
+      error: rl.message,
+      remaining: rl.remaining,
+      reset: rl.reset,
+    })
+  }
+
 
   // Validate method
   if (req.method !== "GET" && req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
@@ -35,6 +48,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       encoder.free();
       return res.status(200).json({
         length: tokens.length,
+        remaining: rl.remaining,
         tokens
       });
     } else {
@@ -53,7 +67,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       encoder.free();
       return res.status(200).json({
         length: tokens.length,
-
+        remaining: rl.remaining,
         tokens
       });
 
