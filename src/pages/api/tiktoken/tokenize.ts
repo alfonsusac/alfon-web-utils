@@ -77,7 +77,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
 
 export const tiktokenEncodings = Object.keys(JSONregistry)
-type TiktokenEncodings = Array<keyof typeof JSONregistry>[number]
+export type TiktokenEncodings = Array<keyof typeof JSONregistry>[number]
 function isTiktokenEncoding(encoding: string): encoding is TiktokenEncodings {
   return tiktokenEncodings.includes(encoding);
 }
@@ -87,7 +87,7 @@ function encodeFromEncodings(encoding: TiktokenEncodings, content: string) {
   encoder.free();
   return tokens;
 }
-const cached_encodeFromEncodings = unstable_cache(async (...args: Parameters<typeof encodeFromEncodings>) => encodeFromEncodings(...args), undefined)
+export const cached_encodeFromEncodings = unstable_cache(async (...args: Parameters<typeof encodeFromEncodings>) => encodeFromEncodings(...args), undefined)
 
 
 

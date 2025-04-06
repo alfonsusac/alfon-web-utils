@@ -19,7 +19,28 @@ List of APIs:
   - model: string (optional)
 
   Response:
-  - tokens: { tokens: number[], remaining: number } | { error: string } | { error: string, remaining: number, reset: number }
+  - tokens:
+    | { tokens: number[], remaining: number } 
+    | { error: string }
+    | { error: string, remaining: number, reset: number }
+
+  ## Tokenize All:
+  - GET /api/tiktoken/tokenize-all
+  - POST /api/tiktoken/tokenize-all
+
+  Request body:
+  - content: string
+
+  Response:
+  - data: 
+    | { data: {
+        [encoding: string]: 
+          | { token: number[] }
+          | { error: string }
+      }, remaining: number }
+    | { error: string } 
+    | { error: string, remaining: number, reset: number }
+
 
   Valid Encodings:
 ${tiktokenEncodings.map((encoding) => `  - ${encoding}`).join('\n')}
