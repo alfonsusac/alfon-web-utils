@@ -36,7 +36,7 @@ export default async function handler(
     | { error: string }
   ][] = []
 
-  await Promise.allSettled(tiktokenEncodings.map(async en => {
+  await Promise.all(tiktokenEncodings.map(async en => {
     try {
       const token = await cached_encodeFromEncodings(en as TiktokenEncodings, content)
       entries.push([en, { token }])
