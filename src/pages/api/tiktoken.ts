@@ -19,7 +19,7 @@ List of APIs:
   - model: string (optional)
 
   Response:
-  - tokens: { length: number, tokens: number[] }
+  - tokens: { tokens: number[], remaining: number } | { error: string } | { error: string, remaining: number, reset: number }
 
   Valid Encodings:
 ${tiktokenEncodings.map((encoding) => `  - ${encoding}`).join('\n')}
