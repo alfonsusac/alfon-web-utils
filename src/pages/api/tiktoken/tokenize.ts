@@ -20,7 +20,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   // Validate method
   if (req.method !== "GET" && req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
   // Get body
-  const body: unknown = req.method === "POST" ? req.body : req.query;
+  const body: object = req.method === "POST"
+    ? (() => {
+      try {
+        return JSON.parse(req.body);
+      } catch (error) {
+        return null;
+      }
+    })()
+    : req.query;
   // Validate body
   if (
     !body
