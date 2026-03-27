@@ -1,5 +1,5 @@
 POST http://localhost:3000/api/tiktoken/tokenize-all
-
+# Test the tokenize-all API endpoint with a sample input string (should reject)
 {
-  "content": "Hello, world! This is a test of the tiktoken tokenizer."
+  "content": "<!DOCTYPE html><html id="__next_error__"><head><meta"
 }
