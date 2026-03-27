@@ -35,6 +35,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     || typeof body !== "object"
     || 'content' in body === false
     || typeof body.content !== "string"
+    || body.content.startsWith("data:") // prevent data urls
+    || body.content.startsWith("<!DOCTYPE") // prevent html documents
   ) return res.status(400).json({ error: "Invalid request body" });
 
 
